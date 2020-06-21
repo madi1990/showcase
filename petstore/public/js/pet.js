@@ -19,7 +19,7 @@ $(function(){
 	        success: function(result){
 	            $("#btn-submit").prop('disabled', false);
                 $("#btn-submit").text('Submit form');
-                if(result.code == 0){
+                if(result.code == 200){
                     showPageModal('Uploaded Successfully', 'Successful', 'success');
                 }
                 else{
@@ -32,6 +32,9 @@ $(function(){
                 var error = 'Internal Error';
                 if(result.status == 404) error = 'Url not found';
                 else if(result.status == 500) error = 'Server error';
+                else {
+                    error = result.statusText;
+                }
                 showPageModal(error, 'Submit Error', 'error');
 	        }
         });

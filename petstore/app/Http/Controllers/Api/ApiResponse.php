@@ -2,7 +2,7 @@
 namespace App\Http\Controllers\Api;
 
 class ApiResponse{
-    private $code;
+    private $code = 200;
     private $type;
     private $message = "";
 
@@ -12,10 +12,7 @@ class ApiResponse{
         'Access-Control-Allow-Headers' => '*',
     ];
     
-    public function __construct($code = 0, $type = '', $message = '', $customHeader = array()){
-        $this->code = $code;
-        $this->type = $type;
-        $this->message = $message;
+    public function __construct($customHeader = array()){
         foreach($customHeader as $header => $value) {
             $this->defaultHeader[$header] = $value;
         }
@@ -64,14 +61,13 @@ class ApiResponse{
 				$xml->{$key} = $value;
 			}
 		}
-        $status = 200;
         $this->defaultHeader['Content-Type'] = 'application/xml';
-        return \Response::make($xml->asXML(), $status, $this->defaultHeader);
+        return \Response::make($xml->asXML(), $this->code, $this->defaultHeader);
     }
     
 	public function asJSON(){
-		$json = $this->data;
-		return \Response::json($json, 200, $this->defaultHeader);
+        $json = $this->data;
+		return \Response::json($json, $this->code, $this->defaultHeader);
     }
     
 	public function asArray(){

@@ -22,14 +22,14 @@ class VerifyImage
             $allowedMimeTypes = ['image/jpeg','image/gif','image/png','image/bmp','image/svg+xml'];
             $mimeType = $request->file('pet_avatar')->getClientMimeType();
             if(in_array($mimeType, $allowedMimeTypes) === false){
-                $apiResponse->setCode(-1);
+                $apiResponse->setCode(415);
                 $apiResponse->setMessage('Uploaded file is not an image');
                 return $apiResponse->outputResponse();
             }
 
 	        $size = $request->file('pet_avatar')->getSize();
 	        if($size > 10 * 1024 * 1024) {
-	            $apiResponse->setCode(-2);
+	            $apiResponse->setCode(400);
                 $apiResponse->setMessage('Uploaded file is too large (Must not be more than 10MB)');
                 return $apiResponse->outputResponse();
 	        }

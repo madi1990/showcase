@@ -15,9 +15,8 @@ class PetController extends Controller
 
     public function upload(Request $request, $petId){
         $pet = Pet::find($petId);
-        if(empty($pet)) {
-            $this->apiResponse->setCode(-4);
-            $this->apiResponse->setType('04');
+        if(empty($pet)) {            
+            $this->apiResponse->setType('unknown');
             $this->apiResponse->setMessage('Pet does not exist');
             return $this->apiResponse->outputResponse();
         }
@@ -34,8 +33,7 @@ class PetController extends Controller
         $pet->name = $request->pet_name;
         $pet->age = $request->pet_age;
         $pet->save();
-        $this->apiResponse->setCode(0);
-        $this->apiResponse->setType('00');
+        $this->apiResponse->setType('success');
         $this->apiResponse->setMessage('Successful');
         return $this->apiResponse->outputResponse();
     }

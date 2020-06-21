@@ -1,17 +1,8 @@
 # Petstore showcase
-The following is the db data.
+To access this store, just host it and then visit: http://ip_address/pet.
 
-+----+-------------+--------+------+---------------------------------+--------+--------+---------------------+
-| id | category_id | name   | age  | photoUrl                        | tag_id | status | updated_time        |
-+----+-------------+--------+------+---------------------------------+--------+--------+---------------------+
-|  1 |           0 | fda    |   12 | app/public/avatars/1_avatar.jpg |      0 |      0 | 2020-06-20 11:49:49 |
-|  2 |           0 | Cat2   |    3 |                                 |      0 |      0 | NULL                |
-|  3 |           0 | Cat2   |    3 |                                 |      0 |      0 | NULL                |
-|  4 |           0 | Cat4   |    4 |                                 |      0 |      0 | NULL                |
-|  5 |           0 | Cat5   |    5 |                                 |      0 |      0 | NULL                |
-|  6 |           0 | Cat6   |    6 |                                 |      0 |      0 | NULL                |
-|  7 |           0 | Puppy1 |    1 |                                 |      0 |      0 | NULL                |
-|  8 |           0 | Puppy2 |    2 |                                 |      0 |      0 | NULL                |
-|  9 |           0 | Puppy3 |    3 |                                 |      0 |      0 | NULL                |
-| 10 |           0 | Puppy4 |    4 |                                 |      0 |      0 | NULL                |
-+----+-------------+--------+------+---------------------------------+--------+--------+---------------------+
+The API work flow:
+
+API entry(/pet/{petId}/uploadImage) -> middleware -> PetController -> DB -> ApiResponse
+
+For the sake of simplicity, I didn't add the authentication to this demo. This can be implemented by HTTP authentication, OAuth 2 or other business related logic.
