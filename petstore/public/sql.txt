@@ -1,0 +1,17 @@
+create database petstore;
+use petstore;
+CREATE TABLE `pet` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `category_id` int unsigned DEFAULT '0',
+  `name` varchar(30) NOT NULL,
+  `age` int unsigned DEFAULT NULL,
+  `photoUrl` varchar(100) NOT NULL,
+  `tag_id` int unsigned DEFAULT '0',
+  `status` int unsigned DEFAULT '0',
+  `updated_time` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1;
+
+insert into pet set name='Cat', age=2, photoUrl='';
+insert into pet set name='Puppy', age=1, photoUrl='';
+
